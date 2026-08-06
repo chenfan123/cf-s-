@@ -1,0 +1,2 @@
+import { useRef,useState } from 'react';import { LRUCache } from './solution'
+export default function Demo(){const cache=useRef(new LRUCache<string,number>(3));const[entries,setEntries]=useState<[string,number][]>([]);const[count,setCount]=useState(1);const add=()=>{cache.current.put(`K${count}`,count);setCount(x=>x+1);setEntries(cache.current.entries())};return <div className="demo"><p>容量：3（最久未使用项会被淘汰）</p><div className="chips">{entries.map(([k,v])=><span key={k}>{k}: {v}</span>)}</div><button onClick={add}>放入 K{count}</button></div>}

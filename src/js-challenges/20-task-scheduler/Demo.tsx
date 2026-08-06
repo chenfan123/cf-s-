@@ -1,0 +1,2 @@
+import { useState } from 'react';import { Scheduler } from './solution'
+export default function Demo(){const[logs,setLogs]=useState<string[]>([]);const run=async()=>{setLogs([]);const scheduler=new Scheduler(2);const tasks=[1,2,3,4].map(n=>scheduler.add(async()=>{setLogs(v=>[...v,`▶ 任务 ${n}`]);await new Promise(r=>setTimeout(r,700));setLogs(v=>[...v,`✓ 任务 ${n}`])}));await Promise.all(tasks)};return <div className="demo"><button onClick={run}>启动 4 个任务</button><div className="event-log">{logs.length?logs.map((x,i)=><span key={i}>{x}</span>):'最多同时运行 2 个任务'}</div></div>}

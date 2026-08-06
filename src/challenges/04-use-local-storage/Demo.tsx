@@ -1,0 +1,2 @@
+import { useLocalStorage } from './solution'
+export default function Demo(){const [name,setName,remove]=useLocalStorage('hooks-lab-name','');return <div className="demo"><label className="field">你的学习昵称<input value={name} onChange={e=>setName(e.target.value)} placeholder="输入后刷新页面试试" /></label><p>{name ? `欢迎回来，${name}！` : '内容会自动保存到 localStorage'}</p><button className="secondary" onClick={remove}>清除记录</button></div>}

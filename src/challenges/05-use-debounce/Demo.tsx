@@ -1,0 +1,3 @@
+import { useState } from 'react'; import { useDebounce } from './solution'
+const names=['React','Redux','React Router','React Query','TypeScript','JavaScript'];
+export default function Demo(){const [query,setQuery]=useState('');const debounced=useDebounce(query,500);const results=names.filter(x=>x.toLowerCase().includes(debounced.toLowerCase()));return <div className="demo"><label className="field">搜索技术<input value={query} onChange={e=>setQuery(e.target.value)} placeholder="连续输入，停顿 500ms 后搜索" /></label><p className="muted">实际搜索词：{debounced || '（空）'}</p><div className="chips">{results.map(x=><span key={x}>{x}</span>)}</div></div>}

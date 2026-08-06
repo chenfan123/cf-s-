@@ -1,0 +1,1 @@
+export function render(template:string,data:Record<string,unknown>){return template.replace(/\{\{\s*([\w.]+)\s*\}\}/g,(_,path:string)=>{let value:unknown=data;for(const key of path.split('.'))value=(value as Record<string,unknown>)?.[key];return value==null?'':String(value)})}

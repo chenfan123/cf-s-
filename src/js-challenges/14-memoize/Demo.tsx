@@ -1,0 +1,2 @@
+import { useMemo,useState } from 'react';import { memoize } from './solution'
+export default function Demo(){const[count,setCount]=useState(0);const slow=useMemo(()=>memoize((n:number)=>{setCount(x=>x+1);return n*n}),[]);const[value,setValue]=useState<number>();return <div className="demo"><p>原函数实际执行：<b>{count}</b> 次</p><div className="actions">{[2,3,2].map((n,i)=><button key={i} onClick={()=>setValue(slow(n))}>计算 {n}²</button>)}</div><div className="code-result">结果：{value??'—'}</div></div>}

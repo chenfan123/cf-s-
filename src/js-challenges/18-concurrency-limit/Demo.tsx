@@ -1,0 +1,2 @@
+import { useState } from 'react';import { asyncPool } from './solution'
+export default function Demo(){const[logs,setLogs]=useState<string[]>([]);const run=async()=>{setLogs([]);await asyncPool(2,[1,2,3,4,5],async n=>{setLogs(v=>[...v,`任务 ${n} 开始`]);await new Promise(r=>setTimeout(r,300+n*100));setLogs(v=>[...v,`任务 ${n} 完成`]);return n})};return <div className="demo"><button onClick={run}>以并发数 2 运行</button><div className="event-log">{logs.length?logs.map((x,i)=><span key={i}>{x}</span>):'等待执行'}</div></div>}

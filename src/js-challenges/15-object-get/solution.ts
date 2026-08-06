@@ -1,0 +1,1 @@
+export function get(object:unknown,path:string|string[],fallback?:unknown){const keys=Array.isArray(path)?path:path.replace(/\[(\w+)\]/g,'.$1').split('.').filter(Boolean);let current:unknown=object;for(const key of keys){if(current===null||current===undefined)return fallback;current=(current as Record<string,unknown>)[key]}return current===undefined?fallback:current}

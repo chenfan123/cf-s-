@@ -1,0 +1,2 @@
+import { useState } from 'react';import { render } from './solution'
+export default function Demo(){const[name,setName]=useState('小明');const template='你好，{{ user.name }}！欢迎学习 {{ course }}。';return <div className="demo"><label className="field">模板数据 user.name<input value={name} onChange={e=>setName(e.target.value)}/></label><div className="code-result">{render(template,{user:{name},course:'JavaScript'})}</div></div>}

@@ -1,0 +1,1 @@
+export function memoize<A extends unknown[],R>(fn:(...args:A)=>R){const cache=new Map<string,R>();return(...args:A)=>{const key=JSON.stringify(args);if(cache.has(key))return cache.get(key)!;const value=fn(...args);cache.set(key,value);return value}}

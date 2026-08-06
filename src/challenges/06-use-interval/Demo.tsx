@@ -1,0 +1,2 @@
+import { useState } from 'react';import { useInterval } from './solution'
+export default function Demo(){const [seconds,setSeconds]=useState(0);const [running,setRunning]=useState(false);useInterval(()=>setSeconds(s=>s+1),running?1000:null);return <div className="demo"><div className="timer">{String(Math.floor(seconds/60)).padStart(2,'0')}:{String(seconds%60).padStart(2,'0')}</div><div className="actions"><button onClick={()=>setRunning(v=>!v)}>{running?'暂停':'开始'}</button><button className="secondary" onClick={()=>{setSeconds(0);setRunning(false)}}>归零</button></div></div>}

@@ -1,0 +1,1 @@
+export async function retry<T>(task:()=>Promise<T>,times=3,delay=300):Promise<T>{let lastError:unknown;for(let i=0;i<times;i++){try{return await task()}catch(error){lastError=error;if(i<times-1)await new Promise(r=>setTimeout(r,delay))}}throw lastError}

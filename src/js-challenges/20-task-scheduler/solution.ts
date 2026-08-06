@@ -1,0 +1,1 @@
+export class Scheduler{private running=0;private queue:Array<()=>void>=[];constructor(private limit:number){}add<T>(task:()=>Promise<T>):Promise<T>{return new Promise((resolve,reject)=>{const run=()=>{this.running++;task().then(resolve,reject).finally(()=>{this.running--;this.queue.shift()?.()})};this.running<this.limit?run():this.queue.push(run)})}}

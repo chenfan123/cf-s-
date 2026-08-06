@@ -1,0 +1,2 @@
+import { useRef,useState } from 'react';import { retry } from './solution'
+export default function Demo(){const attempts=useRef(0);const[state,setState]=useState('等待执行');const run=async()=>{attempts.current=0;setState('执行中…');const result=await retry(async()=>{attempts.current++;setState(`第 ${attempts.current} 次尝试…`);await new Promise(r=>setTimeout(r,350));if(attempts.current<3)throw Error('失败');return'第 3 次成功 ✓'},3,300);setState(result)};return <div className="demo"><div className="code-result">{state}</div><button onClick={run}>模拟失败重试</button></div>}

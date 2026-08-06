@@ -1,0 +1,2 @@
+import { useState } from 'react'; import { usePrevious } from './solution'
+export default function Demo() { const [value,setValue]=useState(10); const previous=usePrevious(value); return <div className="demo"><div className="compare"><span>上一次<b>{previous ?? '—'}</b></span><span>现在<b>{value}</b></span></div><input type="range" min="0" max="100" value={value} onChange={e=>setValue(+e.target.value)}/></div> }
