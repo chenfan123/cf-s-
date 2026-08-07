@@ -1,2 +1,24 @@
-import { useMemo,useState } from 'react';import { debounce } from './solution'
-export default function Demo(){const [input,setInput]=useState('');const [output,setOutput]=useState('');const update=useMemo(()=>debounce((v:string)=>setOutput(v),600),[]);return <div className="demo"><label className="field">快速连续输入<input value={input} onChange={e=>{setInput(e.target.value);update(e.target.value)}}/></label><p>防抖输出（600ms）：<b>{output||'等待输入…'}</b></p></div>}
+import { useMemo, useState } from 'react';
+import { debounce } from './solution';
+export default function Demo() {
+  const [input, setInput] = useState('');
+  const [output, setOutput] = useState('');
+  const update = useMemo(() => debounce((v: string) => setOutput(v), 600), []);
+  return (
+    <div className="demo">
+      <label className="field">
+        快速连续输入
+        <input
+          value={input}
+          onChange={(e) => {
+            setInput(e.target.value);
+            update(e.target.value);
+          }}
+        />
+      </label>
+      <p>
+        防抖输出（600ms）：<b>{output || '等待输入…'}</b>
+      </p>
+    </div>
+  );
+}
