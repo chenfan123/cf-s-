@@ -8,6 +8,12 @@ import HookDebounceDemo from './challenges/05-use-debounce/Demo';
 import IntervalDemo from './challenges/06-use-interval/Demo';
 import FetchDemo from './challenges/07-use-fetch/Demo';
 import UndoDemo from './challenges/08-use-undo/Demo';
+import MountedDemo from './challenges/09-use-mounted/Demo';
+import UpdateEffectDemo from './challenges/10-use-update-effect/Demo';
+import LatestDemo from './challenges/11-use-latest/Demo';
+import EventListenerDemo from './challenges/12-use-event-listener/Demo';
+import ClickOutsideDemo from './challenges/13-use-click-outside/Demo';
+import AsyncDemo from './challenges/14-use-async/Demo';
 import UniqueDemo from './js-challenges/01-array-unique/Demo';
 import FlattenDemo from './js-challenges/02-array-flatten/Demo';
 import CloneDemo from './js-challenges/03-deep-clone/Demo';
@@ -28,6 +34,12 @@ import RetryDemo from './js-challenges/17-async-retry/Demo';
 import PoolDemo from './js-challenges/18-concurrency-limit/Demo';
 import LRUDemo from './js-challenges/19-lru-cache/Demo';
 import SchedulerDemo from './js-challenges/20-task-scheduler/Demo';
+import ChunkDemo from './js-challenges/21-array-chunk/Demo';
+import ShuffleDemo from './js-challenges/22-array-shuffle/Demo';
+import GroupByDemo from './js-challenges/23-group-by/Demo';
+import OnceDemo from './js-challenges/24-once/Demo';
+import PromisifyDemo from './js-challenges/25-promisify/Demo';
+import DeepEqualDemo from './js-challenges/26-deep-equal/Demo';
 
 type Level = '基础' | '进阶' | '挑战';
 type Track = 'React Hooks' | 'JavaScript';
@@ -117,6 +129,12 @@ const hooks: Challenge[] = [
     concepts: ['历史栈', '不可变更新'],
     Demo: UndoDemo,
   },
+  {id:9,title:'实现 useMounted',level:'基础',summary:'通过 ref 判断组件当前是否仍然挂载。',requirements:['挂载后 current 为 true','卸载时恢复为 false'],concepts:['useRef','effect cleanup'],Demo:MountedDemo},
+  {id:10,title:'实现 useUpdateEffect',level:'进阶',summary:'跳过首次渲染，只在依赖更新后执行副作用。',requirements:['首次 effect 不执行回调','后续支持回调 cleanup'],concepts:['useEffect','首次渲染'],Demo:UpdateEffectDemo},
+  {id:11,title:'实现 useLatest',level:'基础',summary:'提供稳定引用，让异步回调始终读取最新值。',requirements:['ref 对象引用保持稳定','每次渲染同步 current'],concepts:['useRef','闭包'],Demo:LatestDemo},
+  {id:12,title:'实现 useEventListener',level:'进阶',summary:'声明式订阅和清理浏览器事件。',requirements:['卸载时移除监听','handler 更新时无需重新订阅'],concepts:['事件监听','latest ref'],Demo:EventListenerDemo},
+  {id:13,title:'实现 useClickOutside',level:'进阶',summary:'检测指定元素之外的点击，常用于菜单和弹窗。',requirements:['返回目标元素 ref','正确判断 contains','清理 document 监听'],concepts:['DOM ref','事件冒泡'],Demo:ClickOutsideDemo},
+  {id:14,title:'实现 useAsync',level:'挑战',summary:'统一管理任意异步函数的执行状态。',requirements:['暴露 execute/data/loading/error','防止旧请求覆盖新请求'],concepts:['竞态处理','泛型参数'],Demo:AsyncDemo},
 ];
 const javascript: Challenge[] = [
   {
@@ -307,6 +325,12 @@ const javascript: Challenge[] = [
     concepts: ['任务队列', 'Promise.finally'],
     Demo: SchedulerDemo,
   },
+  {id:21,title:'数组分块 chunk',level:'基础',summary:'将数组按固定大小拆分成多个子数组。',requirements:['不能修改原数组','不足一组的元素保留','校验 size'],concepts:['slice','步进循环'],Demo:ChunkDemo},
+  {id:22,title:'数组乱序 shuffle',level:'进阶',summary:'使用 Fisher-Yates 算法公平地随机排列数组。',requirements:['返回新数组','每种排列概率一致'],concepts:['随机数','原地交换'],Demo:ShuffleDemo},
+  {id:23,title:'数据分组 groupBy',level:'基础',summary:'根据回调计算的键将数组元素归类。',requirements:['只遍历一次数组','支持字符串、数字和 Symbol 键'],concepts:['reduce','PropertyKey'],Demo:GroupByDemo},
+  {id:24,title:'只执行一次 once',level:'基础',summary:'包装函数，让它无论被调用多少次都只执行一次。',requirements:['缓存首次返回值','后续调用返回相同结果'],concepts:['闭包','状态缓存'],Demo:OnceDemo},
+  {id:25,title:'回调转 Promise',level:'进阶',summary:'将 Node 风格错误优先回调转换为 Promise。',requirements:['错误时 reject','成功时 resolve 回调值','参数正确透传'],concepts:['promisify','错误优先回调'],Demo:PromisifyDemo},
+  {id:26,title:'深度相等 deepEqual',level:'挑战',summary:'递归判断两个复杂值的结构与内容是否相等。',requirements:['使用 Object.is 比较基本值','比较原型和自有键','支持循环引用'],concepts:['递归','Reflect.ownKeys','WeakMap'],Demo:DeepEqualDemo},
 ];
 const banks: Record<Track, Challenge[]> = {
   'React Hooks': hooks,

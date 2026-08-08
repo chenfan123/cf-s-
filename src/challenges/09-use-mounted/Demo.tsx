@@ -1,0 +1,3 @@
+import { useState } from 'react';import { useMounted } from './solution'
+function Child(){const mounted=useMounted();const[state,setState]=useState('等待任务');const run=async()=>{setState('任务执行中…');await new Promise(r=>setTimeout(r,1200));if(mounted.current)setState('组件仍挂载，安全更新 ✓')};return <div className="demo"><div className="code-result">{state}</div><button onClick={run}>启动异步任务</button></div>}
+export default function Demo(){const[show,setShow]=useState(true);return <div className="demo">{show?<Child/>:<p className="muted">子组件已卸载</p>}<button className="secondary" onClick={()=>setShow(v=>!v)}>{show?'卸载子组件':'重新挂载'}</button></div>}

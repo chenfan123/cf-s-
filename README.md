@@ -24,5 +24,5 @@ npm run dev
 
 ## 目录
 
-- `src/challenges`：8 道 React Hooks 手写题。
-- `src/js-challenges`：20 道 JavaScript 面试手写题，包含数组、对象、原型链、函数、缓存、异步并发与设计模式。
+- `src/challenges`：14 道 React Hooks 手写题。
+- `src/js-challenges`：26 道 JavaScript 面试手写题，包含数组、对象、原型链、函数、缓存、异步并发与设计模式。

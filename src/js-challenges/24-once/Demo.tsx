@@ -1,0 +1,2 @@
+import { useMemo,useState } from 'react';import { once } from './solution'
+export default function Demo(){const[runs,setRuns]=useState(0);const init=useMemo(()=>once(()=>{setRuns(v=>v+1);return`初始化时间：${new Date().toLocaleTimeString()}`}),[]);const[result,setResult]=useState('');return <div className="demo"><p>原函数执行次数：<b>{runs}</b></p><button onClick={()=>setResult(init())}>调用包装函数</button><div className="code-result">{result||'尚未调用'}</div></div>}

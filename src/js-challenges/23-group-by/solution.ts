@@ -1,0 +1,1 @@
+export function groupBy<T,K extends PropertyKey>(items:T[],getKey:(item:T)=>K):Record<K,T[]>{return items.reduce((groups,item)=>{const key=getKey(item);(groups[key]??=[]).push(item);return groups},Object.create(null) as Record<K,T[]>)}

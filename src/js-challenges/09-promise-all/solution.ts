@@ -1,1 +1,16 @@
-export function promiseAll<T>(items: Iterable<T | PromiseLike<T>>): Promise<Awaited<T>[]> {return new Promise((resolve,reject)=>{const values=Array.from(items);if(values.length===0)return resolve([]);const result:Awaited<T>[]=[];let done=0;values.forEach((item,index)=>Promise.resolve(item).then(value=>{result[index]=value as Awaited<T>;if(++done===values.length)resolve(result)},reject))})}
+export function promiseAll<T>(
+  items: Iterable<T | PromiseLike<T>>,
+): Promise<Awaited<T>[]> {
+  return new Promise((resolve, reject) => {
+    const values = Array.from(items);
+    if (values.length === 0) return resolve([]);
+    const result: Awaited<T>[] = [];
+    let done = 0;
+    values.forEach((item, index) =>
+      Promise.resolve(item).then((value) => {
+        result[index] = value as Awaited<T>;
+        if (++done === values.length) resolve(result);
+      }, reject),
+    );
+  });
+}

@@ -1,0 +1,2 @@
+import { useEffect,useRef } from 'react'
+export function useEventListener<K extends keyof WindowEventMap>(type:K,handler:(event:WindowEventMap[K])=>void,target:Window=window){const saved=useRef(handler);saved.current=handler;useEffect(()=>{const listener=(event:WindowEventMap[K])=>saved.current(event);target.addEventListener(type,listener as EventListener);return()=>target.removeEventListener(type,listener as EventListener)},[type,target])}

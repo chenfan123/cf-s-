@@ -1,0 +1,2 @@
+import { useState } from 'react';import { useClickOutside } from './solution'
+export default function Demo(){const[open,setOpen]=useState(false);const ref=useClickOutside<HTMLDivElement>(()=>setOpen(false));return <div className="demo click-zone"><button onClick={()=>setOpen(true)}>打开菜单</button>{open?<div ref={ref} className="floating-menu"><b>菜单已打开</b><span>点击这个框外面关闭</span></div>:<p className="muted">菜单已关闭</p>}</div>}

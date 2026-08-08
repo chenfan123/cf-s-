@@ -1,0 +1,2 @@
+import { useState } from 'react';import { useLatest } from './solution'
+export default function Demo(){const[count,setCount]=useState(0);const[result,setResult]=useState('');const latest=useLatest(count);const delay=()=>setTimeout(()=>setResult(`延迟回调读到最新值：${latest.current}`),1200);return <div className="demo"><div className="big-number">{count}</div><div className="actions"><button onClick={delay}>创建延迟回调</button><button onClick={()=>setCount(v=>v+1)}>立即 +1</button></div><p>{result||'先创建回调，再快速改变数字'}</p></div>}

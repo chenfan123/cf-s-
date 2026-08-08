@@ -1,0 +1,2 @@
+import { useState } from 'react';import { useUpdateEffect } from './solution'
+export default function Demo(){const[count,setCount]=useState(0);const[logs,setLogs]=useState<string[]>(['首次渲染：effect 未执行']);useUpdateEffect(()=>setLogs(v=>[...v,`count 更新为 ${count}`]),[count]);return <div className="demo"><div className="big-number">{count}</div><button onClick={()=>setCount(v=>v+1)}>更新状态</button><div className="event-log">{logs.map((x,i)=><span key={i}>{x}</span>)}</div></div>}

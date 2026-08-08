@@ -1,0 +1,2 @@
+import { useState } from 'react';import { deepEqual } from './solution'
+export default function Demo(){const[text,setText]=useState('{"user":{"name":"Ada"},"skills":["JS"]}');let parsed:unknown;let valid=true;try{parsed=JSON.parse(text)}catch{valid=false}const target={user:{name:'Ada'},skills:['JS']};return <div className="demo"><label className="field">编辑右侧 JSON<textarea value={text} onChange={e=>setText(e.target.value)}/></label><div className={`code-result ${!valid?'error':''}`}>{valid?`与目标对象深度相等：${deepEqual(target,parsed)}`:'JSON 格式错误'}</div></div>}
